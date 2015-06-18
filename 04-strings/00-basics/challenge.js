@@ -3,7 +3,17 @@ module.exports.formLetter = function(firstName, senderName, message) {
 };
 
 module.exports.sliceItAndCombineIt = function(bigString, startA, endA, startB, endB) {
-  return bigString.substring(7, 10); + " " + bigString.substring( 14, 20);
+  // return bigString.substring(7, 10);
+
+  // (1) Make a substring from `bigString` bounded by startA and endA
+  var substringA = bigString.substring(startA, endA);
+
+  // (2) Make a substring from the string bounds startB and endB
+   var substringB = bigString.substring(startB, endB);
+
+  // (3) Then concat both strings
+    var substringC = substringA + substringB;
+    return substringC;
 };
 
 module.exports.findFirstMatch = function(text, searchString) {
@@ -12,9 +22,15 @@ module.exports.findFirstMatch = function(text, searchString) {
 };
 
 module.exports.findLastMatch = function(text, searchString) {
-  return text.indexOf(searchString, 10);
+  return text.lastIndexOf(searchString);
 };
 
 module.exports.substringBetweenMatches = function(text, searchString) {
-  return text.substring(17, 41);
+  
+  var newSub = text.indexOf(searchString);
+  var newSubEnd = text.lastIndexOf(searchString);
+  var searchTermLength = searchString.length;
+  var result = text.substring(newSub, newSubEnd);
+
+  return result.substring(searchTermLength, newSubEnd);
 };
